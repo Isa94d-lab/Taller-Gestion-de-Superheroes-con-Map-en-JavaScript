@@ -101,6 +101,7 @@ function personajesDeUniverso(numero_universo_escogido){
         else if (numero_universo_escogido == 2) {
           /* El forEach nos permite iterar dentro de cada llave */
           superheroes.forEach((heroe) => {
+            
             /* preguntamos cuales tienen la palabra "DC" */
             if (heroe.universo === 'DC') {
                 /* Se muestran las "llaves" que contengan la palabra 'DC' */
@@ -117,3 +118,48 @@ function personajesDeUniverso(numero_universo_escogido){
       
 /* Para que se ejecute la funcion */
 personajesDeUniverso(numero_universo_escogido);
+
+/* -----------*/
+
+/* Le solicitamos al usuario que ingrese el numero del superheroese deceado */
+
+let super_escogido2 = prompt("De que superheroe te gustaria cambiar su poder? (INGRESA SOLO EL NUMERO) 1. IronMan / 2. Spiderman / 3. Deadpool / 4. BatMan / 5. Flash",
+);
+
+/* Para permitir q el numero ingresado por el usuario sea usado, es necesario pasarlo a Int ya que antes se encontraba en string*/
+let numero_super_escogido2 = parseInt(super_escogido2);
+
+function actualizarFuerza(numero_super_escogido2) {
+    let heroe2 = superheroes.get(numero_super_escogido2);
+    if (heroe2) {
+        /* Le muestro al usuario la fuerza original*/
+        console.log(`El poder original de ${heroe.nombre} es de: ${heroe.poder}`);
+        /* Se le pregunta al usuario que quiere hacer con el poder */
+        let suma_o_resta = prompt("Que deceas realizar 1. SUMAR o 2. RESTAR el poder?");
+        /* Cuanto se modificara el poder*/
+        let valor = parseInt(prompt("Cuanto te gustaria modificar el poder?"));
+        /* Esto permitira sacar el poder de la llave seleccionada */
+        let heroe2 = superheroes.get(numero_super_escogido2);
+        /* Escogio suma */
+        if (suma_o_resta == 1) {
+            /* Se operan los 2 valores*/
+            heroe2.fuerza += valor
+            /* Se muestra la nueva fuerza*/
+            console.log(`La nueva fuerza de ${heroe.nombre} es de: ${heroe.fuerza}`);
+        }
+        /* Si no es suma es resta */
+        else if (suma_o_resta == 2){
+            /* Se operan los 2 valores*/
+            heroe2.fuerza -= valor
+            /* Se muestra la nueva fuerza*/
+            console.log(`La nueva fuerza de ${heroe.nombre} es de: ${heroe.fuerza}`);
+        }
+        /* Si no es ninguna de las opciones se marcara como incorrecta */
+        else {
+            console.log("La marcacion fue incorrecta");
+        }
+
+    }
+
+}
+actualizarFuerza(numero_super_escogido2)
