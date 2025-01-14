@@ -45,12 +45,24 @@ const superheroes = new Map ([
       }],
 ])
 
+/* Creamos una lista que mostrara los nombres */
+let nombresHeroes = "";
+
+/* Funcion para ver los heroes disponibles */
+function mirartodosHeroes() {
+  superheroes.forEach((heroe1, key) => {
+    nombresHeroes += `${key}. ${heroe1.nombre}\n`;
+});
+}
+
+mirartodosHeroes();
+
 /* -----------*/
+
 
 /* Le solicitamos al usuario que ingrese el numero del superheroese deceado */
 
-let super_escogido = prompt("De que superheroe te gustaria ver informacion? (INGRESA SOLO EL NUMERO) 1. IronMan / 2. Spiderman / 3. Deadpool / 4. BatMan / 5. Flash",
-);
+let super_escogido = prompt(`De que superheroe te gustaria ver informacion? (INGRESA SOLO EL NUMERO)\n${nombresHeroes}`);
 
 /* Para permitir q el numero ingresado por el usuario sea usado, es necesario pasarlo a Int ya que antes se encontraba en string*/
 let numero_super_escogido = parseInt(super_escogido);
@@ -68,7 +80,7 @@ function buscarSuperheroePor(numero_super_escogido) {
         console.log(`Fuerza: ${heroe.fuerza}`);
         /* Si lo ingresado no coincide con las "llaves" establecidas, mostrara el siguiente mensaje*/
           } else {
-            console.log("La marcacion fue incorrecta");
+            console.log("Tu marcacion fue incorrecta");
           }
         }
 
@@ -123,43 +135,72 @@ personajesDeUniverso(numero_universo_escogido);
 
 /* Le solicitamos al usuario que ingrese el numero del superheroese deceado */
 
-let super_escogido2 = prompt("De que superheroe te gustaria cambiar su poder? (INGRESA SOLO EL NUMERO) 1. IronMan / 2. Spiderman / 3. Deadpool / 4. BatMan / 5. Flash",
-);
+let super_escogido2 = prompt(`De que superheroe te gustaria cambiar su poder? (INGRESA SOLO EL NUMERO) (INGRESA SOLO EL NUMERO)\n${nombresHeroes}`);
 
 /* Para permitir q el numero ingresado por el usuario sea usado, es necesario pasarlo a Int ya que antes se encontraba en string*/
 let numero_super_escogido2 = parseInt(super_escogido2);
 
 function actualizarFuerza(numero_super_escogido2) {
+  /* Esto permitira sacar el poder de la llave seleccionada */
     let heroe2 = superheroes.get(numero_super_escogido2);
     if (heroe2) {
         /* Le muestro al usuario la fuerza original*/
-        console.log(`El poder original de ${heroe.nombre} es de: ${heroe.poder}`);
+        console.log(`La fuerza original de ${heroe2.nombre} es de: ${heroe2.fuerza}`);
         /* Se le pregunta al usuario que quiere hacer con el poder */
-        let suma_o_resta = prompt("Que deceas realizar 1. SUMAR o 2. RESTAR el poder?");
+        let suma_o_resta = prompt("Que deceas realizar 1. SUMAR o 2. RESTAR a la fuerza?");
         /* Cuanto se modificara el poder*/
         let valor = parseInt(prompt("Cuanto te gustaria modificar el poder?"));
-        /* Esto permitira sacar el poder de la llave seleccionada */
-        let heroe2 = superheroes.get(numero_super_escogido2);
+        /* Confirmar si escogio un numero valido*/
+        if (isNaN(valor) || valor <= 0) {
+            console.log("Tu marcacion fue incorrecta");
+            return;
+        }
+        
         /* Escogio suma */
         if (suma_o_resta == 1) {
             /* Se operan los 2 valores*/
-            heroe2.fuerza += valor
+            heroe2.fuerza += valor;
             /* Se muestra la nueva fuerza*/
-            console.log(`La nueva fuerza de ${heroe.nombre} es de: ${heroe.fuerza}`);
+            console.log(`La nueva fuerza de ${heroe2.nombre} es de: ${heroe2.fuerza}`);
         }
         /* Si no es suma es resta */
         else if (suma_o_resta == 2){
             /* Se operan los 2 valores*/
             heroe2.fuerza -= valor
             /* Se muestra la nueva fuerza*/
-            console.log(`La nueva fuerza de ${heroe.nombre} es de: ${heroe.fuerza}`);
+            console.log(`La nueva fuerza de ${heroe2.nombre} es de: ${heroe2.fuerza}`);
         }
         /* Si no es ninguna de las opciones se marcara como incorrecta */
         else {
             console.log("La marcacion fue incorrecta");
         }
+        
 
     }
 
 }
 actualizarFuerza(numero_super_escogido2)
+
+/* -----------*/
+
+/* Le solicitamos al usuario que ingrese el numero del superheroese deceado */
+
+let super_escogido3 = prompt(`De que superheroe te gustaria eliminar?\n${nombresHeroes}`);
+
+/* Para permitir q el numero ingresado por el usuario sea usado, es necesario pasarlo a Int ya que antes se encontraba en string*/
+let numero_super_escogido3 = parseInt(super_escogido3);
+
+/* Creamos una funcion encargada de mostrar la info del heroe dependiendo de la seleccion del usuario*/
+function eliminarSuperheroe(numero_super_escogido3) {
+  /* Esto nos permitira extraer la informacion con la "llave" usando el numero del heroe escogido*/
+  let heroe3_1 = superheroes.get(numero_super_escogido3);
+  if (heroe3_1) {
+    console.log(`La informacion del superheroe ${heroe3_1.nombre} AH SIDO ELIMINADA!!`)
+    superheroes.delete(numero_super_escogido3);
+  }
+  else {
+    console.log("Tu marcacion fue incorrecta")
+  }
+}
+
+eliminarSuperheroe(numero_super_escogido3)
