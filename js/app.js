@@ -212,4 +212,30 @@ eliminarSuperheroe(numero_super_escogido3)
 
 /* -----------*/
 
-mostrarSuperheroes
+/* Buscar el superheroe mas fuerte */
+
+/* Almacenara la fuerza mas alta*/
+let fuerza = 0;
+
+/* Encargado de retornar el nombre del  */
+let heroeMasFuerte = null;
+
+/* Creamos la funcion */
+function superheroeMasFuerte() {
+  /* Iteramos sobre el MAP para representar cada elemento del mapa en cada iteracion */
+  superheroes.forEach((heroe) => {
+    /* Se muestra la fuerza y el nombre de cada superheroe */
+    console.log(`Fuerza de ${heroe.nombre}: ${heroe.fuerza}`);
+    /* Comparamos las fuerza de cada uno con la fuerza mayor mas registrada */
+    if (heroe.fuerza > fuerza) {
+      /* Si se cumple la condicion, la variable que almacenaba la fuerza mas alta hasta la fecha, ahora sera remplazada por la nueva fuerza del superheroe */
+      fuerza = heroe.fuerza;
+      /* Para el nombre del heroe segun su fuerza*/
+      heroeMasFuerte = heroe
+    }
+  });
+  
+  console.log(`El superheroe mas fuerte es ${heroeMasFuerte.nombre} con una fuerza de ${fuerza}`);
+}
+
+superheroeMasFuerte();
