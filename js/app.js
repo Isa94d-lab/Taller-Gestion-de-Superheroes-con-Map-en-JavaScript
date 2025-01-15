@@ -150,9 +150,9 @@ function actualizarFuerza(numero_super_escogido2) {
         console.log(`La fuerza original de ${heroe2.nombre} es de: ${heroe2.fuerza}`);
         /* Se le pregunta al usuario que quiere hacer con el poder */
         let suma_o_resta = prompt("Que deceas realizar 1. SUMAR o 2. RESTAR a la fuerza?");
-        /* Cuanto se modificara el poder*/
+        /* Cuanto se modificara el poder */
         let valor = parseInt(prompt("Cuanto te gustaria modificar el poder?"));
-        /* Confirmar si escogio un numero valido*/
+        /* Confirmar si escogio un numero valido */
         if (isNaN(valor) || valor <= 0) {
             console.log("Tu marcacion fue incorrecta");
             return;
@@ -210,7 +210,7 @@ function eliminarSuperheroe(numero_super_escogido3) {
 
 eliminarSuperheroe(numero_super_escogido3)
 
-/* -----------*/
+/* ---------------------------------------------------------- */
 
 /* Buscar el superheroe mas fuerte */
 
@@ -239,3 +239,34 @@ function superheroeMasFuerte() {
 }
 
 superheroeMasFuerte();
+
+/* ---------------------------------------------------------- */
+
+/* Se le pregnta al usuario, que Superheroes le gustaria enfrentar entre si, el primero */
+let primer_heroe = parseInt(prompt(`Que heroes te gustaria enfrentar? \n${nombresHeroes} \n Selecciona el primer heroe: `));
+/* El segundo */
+let segundo_heroe = parseInt(prompt(`${nombresHeroes} \n Selecciona el segundo heroe: `));
+
+/* Se crea una funcion para permitir enfrentar a los 2 heroes */
+function combate(primer_heroe, segundo_heroe) {
+  /* Con ayuda de estas 2 variables podremos adquirir la fuerza de cada uno*/
+let primer_heroe2 = superheroes.get(primer_heroe);
+let segundo_heroe2 = superheroes.get(segundo_heroe);
+      if (primer_heroe2 && segundo_heroe2) {
+        /* Se esta mostrando la informacion del combate */
+        console.log(` --- ENFRENTAMIENTO --- \n ${primer_heroe2.nombre} V.R ${segundo_heroe2.nombre}`);
+        /* Le otorgamos variables a los puntos de fuerza de cada heroe*/
+        let poder_primer_heroe = primer_heroe2.fuerza;
+        let poder_segundo_heroe = segundo_heroe2.fuerza;
+        /* El GANADOR sera aquel superheroe con mayor fuerza */
+        if (poder_primer_heroe > poder_segundo_heroe) {
+          console.log(`El heroe ${primer_heroe2.nombre} fue el GANADOR con ${primer_heroe2.fuerza}`)
+        } else if (poder_primer_heroe === poder_segundo_heroe) {
+          console.log('Fue un EMPATE')
+        } else {
+          console.log(`El heroe ${segundo_heroe2.nombre} fue el GANADOR con ${segundo_heroe2.fuerza}`)
+        }
+          } else {
+            console.log("Tu marcacion fue incorrecta");
+          }
+    }
