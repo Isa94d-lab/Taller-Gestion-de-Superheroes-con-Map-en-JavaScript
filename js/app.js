@@ -48,14 +48,16 @@ const superheroes = new Map ([
 /* Creamos una lista que mostrara los nombres */
 let nombresHeroes = "";
 
-/* Funcion para ver los heroes disponibles */
-function mirartodosHeroes() {
+/* Creamos una funcion para ver los heroes disponibles y asi poder mostrarlos al usuario */
+function mostrarSuperheroes() {
+  /* Usamos un for para iterar los elementos de cada "conjunto" */
   superheroes.forEach((heroe1, key) => {
+    /* El proceso se repetira dependiendo de cada nombre que se enceuntre */
     nombresHeroes += `${key}. ${heroe1.nombre}\n`;
 });
 }
 
-mirartodosHeroes();
+mostrarSuperheroes();
 
 /* -----------*/
 
@@ -195,12 +197,19 @@ function eliminarSuperheroe(numero_super_escogido3) {
   /* Esto nos permitira extraer la informacion con la "llave" usando el numero del heroe escogido*/
   let heroe3_1 = superheroes.get(numero_super_escogido3);
   if (heroe3_1) {
+    /* Mostramos el nombre del heroe antes de eliminarlo, de no hacerlo, no se mostraria*/
     console.log(`La informacion del superheroe ${heroe3_1.nombre} AH SIDO ELIMINADA!!`)
+    /* Se elimina la informacion del heroe*/
     superheroes.delete(numero_super_escogido3);
   }
   else {
+    /* Si el usuario ingresa una opcion que no esta dentro de las llaves*/
     console.log("Tu marcacion fue incorrecta")
   }
 }
 
 eliminarSuperheroe(numero_super_escogido3)
+
+/* -----------*/
+
+mostrarSuperheroes
