@@ -7,7 +7,8 @@ const superheroes = new Map ([
         nombre: "Iron Man",
         universo: "Marvel",
         poder: "Millonario, Play Boy, Filantropo",
-        fuerza: 85
+        fuerza: 85,
+        habilidades: []
       }], 
     [
     2, {
@@ -15,7 +16,8 @@ const superheroes = new Map ([
         nombre: "Spiderman",
         universo: "Marvel",
         poder: "La araña  humana",
-        fuerza: 90
+        fuerza: 90,
+        habilidades: []
       }],
     [
 
@@ -24,7 +26,8 @@ const superheroes = new Map ([
         nombre: "Deadpool",
         universo: "Marvel",
         poder: "Regeneracion",
-        fuerza: 100
+        fuerza: 100,
+        habilidades: []
       }],
     
     [
@@ -33,7 +36,8 @@ const superheroes = new Map ([
         nombre: "BatMan",
         universo: "DC",
         poder: "Millonario",
-        fuerza: 85
+        fuerza: 85,
+        habilidades: []
       }],
     [
     5, {
@@ -41,7 +45,8 @@ const superheroes = new Map ([
         nombre: "Flash",
         universo: "DC",
         poder: "Super velocidad",
-        fuerza: 80
+        fuerza: 80,
+        habilidades: []
       }],
 ])
 
@@ -59,7 +64,7 @@ function mostrarSuperheroes() {
 
 mostrarSuperheroes();
 
-/* -----------*/
+/* ---------------------------------------------------------- */
 
 
 /* Le solicitamos al usuario que ingrese el numero del superheroese deceado */
@@ -89,7 +94,7 @@ function buscarSuperheroePor(numero_super_escogido) {
 /* Para que se ejecute la funcion */
 buscarSuperheroePor(numero_super_escogido);
 
-/* -----------*/
+/* ---------------------------------------------------------- */
 
 /* Le pedimos al usuario que ingrese el universo de su preferencia*/
 let universo_escogido = prompt("De que UNIVERSO te gustaria ver sus personajes? 1. Marvel 2. DC");
@@ -133,7 +138,7 @@ function personajesDeUniverso(numero_universo_escogido){
 /* Para que se ejecute la funcion */
 personajesDeUniverso(numero_universo_escogido);
 
-/* -----------*/
+/* ---------------------------------------------------------- */
 
 /* Le solicitamos al usuario que ingrese el numero del superheroese deceado */
 
@@ -183,7 +188,7 @@ function actualizarFuerza(numero_super_escogido2) {
 }
 actualizarFuerza(numero_super_escogido2)
 
-/* -----------*/
+/* ---------------------------------------------------------- */
 
 /* Le solicitamos al usuario que ingrese el numero del superheroese deceado */
 
@@ -270,3 +275,40 @@ let segundo_heroe2 = superheroes.get(segundo_heroe);
             console.log("Tu marcacion fue incorrecta");
           }
     }
+
+/* ---------------------------------------------------------- */
+
+function agregarHabilidad() {
+  let new_habilidad = parseInt(prompt(`A que heroe te gustaria agregarle habilidades especiales (INGRESA SOLO EL NUMERO): \n${nombresHeroes}`));
+  let hero_hability = superheroes.get(new_habilidad);
+  if (hero_hability) {
+    let habilidad = prompt(`¿Qué habilidad quieres agregar a ${hero_hability.nombre}?`);
+    hero_hability.habilidades.push(habilidad); 
+    console.log(`${hero_hability.nombre} ahora tiene la habilidad: ${habilidad}`);
+  } else {
+    console.log("Tu marcacion fue incorrecta");
+  }
+}
+
+agregarHabilidad()
+
+/* ---------------------------------------------------------- */
+
+
+function mostrarHabilidades() {
+  let super_escogido = parseInt(prompt(`De que superheroe quieres ver sus habilidades? \n${nombresHeroes}`));
+
+  let heroe = superheroes.get(super_escogido);
+  if (heroe) {
+    if (heroe.habilidades.length === 0) {
+      console.log(`${heroe.nombre} no tiene habilidades agregadas.`);
+    } else {
+      console.log(`Habilidades de ${heroe.nombre}:`);
+      heroe.habilidades.forEach((habilidad, index) => {
+        console.log(`${index + 1}. ${habilidad}`);
+      });
+    }
+  } else {
+    console.log("Tu marcación fue incorrecta");
+  }
+}
